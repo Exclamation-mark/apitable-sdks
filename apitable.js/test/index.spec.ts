@@ -13,13 +13,14 @@ env.config();
 jest.setTimeout(30000);
 
 describe('full pipeline', () => {
-  const host = process.env.DOMAIN ? `https://${process.env.DOMAIN}/fusion/v1` : undefined;
-  const token = process.env.TOKEN as string;
-  const datasheetId = process.env.DATASHEET_ID as string;
-  const folderId = process.env.FOLDER_ID as string;
-  const spaceId = process.env.SPACE_ID as string;
-  const viewId = process.env.VIEW_ID as string;
-  
+  const host = process.env.DOMAIN ? `https://${process.env.DOMAIN}/fusion/v1` : 'https://integration.vika.ltd/fusion/v1';
+  const token = process.env.TOKEN as string || 'uskM9c6MzfkHMeCJVipM1zv';
+  const datasheetId = process.env.DATASHEET_ID as string || 'dstcxPgGaxbx6vW4fZ';
+  const folderId = process.env.FOLDER_ID as string || 'fodg5Cqug2i1D';
+  const spaceId = process.env.SPACE_ID as string || 'spcNmQArL7SDk';
+  const viewId = process.env.VIEW_ID as string || 'viwEt4bW0cBRE';
+
+  console.log('token', token);
   const apitable = new APITable({
     token,
     host,
