@@ -13,14 +13,23 @@ env.config();
 jest.setTimeout(30000);
 
 describe('full pipeline', () => {
-  const host = process.env.DOMAIN ? `https://${process.env.DOMAIN}/fusion/v1` : 'https://integration.vika.ltd/fusion/v1';
+  const host = 'https://integration.vika.ltd/fusion/v1';
   const token = process.env.TOKEN as string || 'uskM9c6MzfkHMeCJVipM1zv';
   const datasheetId = process.env.DATASHEET_ID as string || 'dstcxPgGaxbx6vW4fZ';
   const folderId = process.env.FOLDER_ID as string || 'fodg5Cqug2i1D';
   const spaceId = process.env.SPACE_ID as string || 'spcNmQArL7SDk';
   const viewId = process.env.VIEW_ID as string || 'viwEt4bW0cBRE';
 
+
+  // const host = 'https://vika.cn/fusion/v1';
+  // const token = process.env.TOKEN as string || 'uskM9c6MzfkHMeCJVipM1zv';
+  // const datasheetId = process.env.DATASHEET_ID as string || 'dstDDvlojfsVhWSfse';
+  // const folderId = process.env.FOLDER_ID as string || 'fodWGD6LirjMM';
+  // const spaceId = process.env.SPACE_ID as string || 'spcBcZN1UZZJz';
+  // const viewId = process.env.VIEW_ID as string || 'viwZgTwp3cgAN';
+
   console.log('token', token);
+  console.log('datasheetId', datasheetId);
   const apitable = new APITable({
     token,
     host,
@@ -211,6 +220,7 @@ describe('full pipeline', () => {
       "theme": EmbedLinkTheme.Light,
     };
     const res = await apitable.space(spaceId).datasheet(datasheetId).createEmbedLink(embedLinkCreateRo);
+    console.log('response', res);
     expect(res.success).toBeTruthy();
     embedId = res.data?.linkId || '';
   })
